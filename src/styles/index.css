@@ -1,0 +1,17 @@
+/* Polices auto-hébergées (aucune requête externe). */
+@import '@fontsource-variable/bricolage-grotesque/opsz.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+@import './tokens.css';
+@import './base.css';
+@import './ui.css';
+@import './nav.css';
+@import './hero.css';
+@import './sections.css';
+@import './projects.css';
+@import './panel.css';
+@import './skills.css';
+@import './overlays.css';
+@import './effects.css';

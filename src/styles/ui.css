@@ -1,0 +1,454 @@
+/* Composants d'interface réutilisables : boutons, puces, outils, curseur. */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  background: var(--bg-3);
+  color: var(--fg-2);
+  font: 500 10.5px/1 var(--font-mono);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+
+/* Boutons */
+.btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  height: 54px;
+  padding: 0 24px;
+  border-radius: 999px;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 500ms var(--ease-out);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: none;
+}
+
+.btn .icon {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.btn:hover .icon {
+  transform: translateX(3px);
+}
+
+.btn:hover .icon--down {
+  transform: translateY(3px);
+}
+
+.btn:hover .icon--diag {
+  transform: translate(2px, -2px);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+.btn--primary::before {
+  background: var(--fg);
+}
+
+.btn--primary:hover {
+  color: var(--bg);
+}
+
+.btn--ghost {
+  border: 1px solid var(--line-2);
+}
+
+.btn--ghost::before {
+  background: var(--fg);
+}
+
+.btn--ghost:hover {
+  color: var(--bg);
+  border-color: var(--fg);
+}
+
+.btn--sm {
+  height: 42px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+
+.btn__count {
+  display: inline-grid;
+  place-items: center;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.14);
+  font: 600 11px/1 var(--font-mono);
+}
+
+/* Puces et filtres */
+.chip,
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  transition:
+    background-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.chip:hover,
+.filter:hover {
+  border-color: var(--fg);
+}
+
+.chip:active,
+.filter:active {
+  transform: scale(0.96);
+}
+
+.filter sup {
+  color: var(--muted);
+  font: 500 10px/1 var(--font-mono);
+  transform: translateY(-3px);
+}
+
+.filter[aria-pressed='true'] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.filter[aria-pressed='true'] sup {
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* Boutons icône */
+.tool {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 8px;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  color: var(--fg-2);
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    background-color var(--dur-fast) ease,
+    transform var(--dur-fast) ease;
+}
+
+.tool:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+  background: var(--bg-3);
+}
+
+.tool:active {
+  transform: scale(0.94);
+}
+
+/* Icône soleil / lune selon le thème */
+.icon--moon,
+[data-theme='light'] .icon--sun {
+  display: none;
+}
+
+[data-theme='light'] .icon--moon {
+  display: block;
+}
+
+.link-btn {
+  color: var(--fg-2);
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-btn:hover {
+  color: var(--accent);
+}
+
+/* Statut « disponible » */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status__dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3ddc84;
+}
+
+.status__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: ping 2.2s var(--ease-out) infinite;
+}
+
+@keyframes ping {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Marqueur d'exploration (Nouveau / Exploré) */
+.badge-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bg) 78%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--fg);
+  font: 500 10.5px/1 var(--font-mono);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.badge-state::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.badge-state.is-done {
+  color: var(--fg-2);
+}
+
+.badge-state.is-done::before {
+  background: none;
+  width: 9px;
+  height: 5px;
+  border-radius: 0;
+  border: solid currentColor;
+  border-width: 0 0 1.5px 1.5px;
+  box-shadow: none;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+/* Anneau de progression XP */
+.xp-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 50%;
+  transition: transform var(--dur) var(--ease-spring);
+}
+
+.xp-ring:hover {
+  transform: scale(1.08);
+}
+
+.xp-ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.xp-ring circle {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.xp-ring__track {
+  stroke: var(--line-2);
+}
+
+.xp-ring__value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: calc(100 - var(--p));
+  transition: stroke-dashoffset 1s var(--ease-out);
+}
+
+.xp-ring__value-text {
+  font: 600 11px/1 var(--font-mono);
+  letter-spacing: -0.04em;
+}
+
+.xp-ring__value-text::after {
+  content: '%';
+  font-size: 8px;
+  opacity: 0.6;
+}
+
+/* Curseur personnalisé */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input {
+  cursor: text !important;
+}
+
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur) ease;
+}
+
+.cursor.is-visible {
+  opacity: 1;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.cursor__dot::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.cursor__ring::before {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--fg);
+  border-radius: 50%;
+  opacity: 0.45;
+  transition:
+    transform 450ms var(--ease-out),
+    background-color var(--dur) ease,
+    border-color var(--dur) ease,
+    opacity var(--dur) ease;
+}
+
+.cursor.is-hover .cursor__ring::before {
+  transform: scale(1.6);
+  opacity: 0.9;
+  background: color-mix(in oklab, var(--fg) 8%, transparent);
+}
+
+.cursor.has-label .cursor__ring::before {
+  transform: scale(2.5);
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.cursor.is-down .cursor__ring::before {
+  transform: scale(0.8);
+}
+
+.cursor.has-label.is-down .cursor__ring::before {
+  transform: scale(2.2);
+}
+
+.cursor.is-text .cursor__ring::before {
+  opacity: 0;
+}
+
+.cursor.has-label .cursor__dot {
+  opacity: 0;
+}
+
+.cursor__label {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0.6);
+  color: var(--accent-fg);
+  font: 600 11px/1 var(--font-mono);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity var(--dur-fast) ease,
+    transform var(--dur) var(--ease-out);
+}
+
+.cursor.has-label .cursor__label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}

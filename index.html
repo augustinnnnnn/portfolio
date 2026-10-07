@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>[MON NOM] — Portfolio</title>
+    <meta name="description" content="[MA PRÉSENTATION COURTE] — Portfolio de [MON NOM]." />
+    <meta name="theme-color" content="#0c0c0b" />
+    <meta property="og:title" content="[MON NOM] — Portfolio" />
+    <meta property="og:description" content="[MA PRÉSENTATION COURTE]" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      /* Applique le thème enregistré avant le premier rendu (évite le flash). */
+      try {
+        const theme = JSON.parse(localStorage.getItem('portfolio:theme'));
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: sans-serif">Ce portfolio nécessite JavaScript pour afficher son contenu.</p>
+    </noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
